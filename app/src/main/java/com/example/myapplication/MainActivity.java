@@ -61,9 +61,111 @@ public class MainActivity extends AppCompatActivity
 
     protected void click(View v)
     {
-        Button b = (Button)v;
+        Button b = (Button) v;
         String s = b.getText().toString();
-        if(s!="=" && s!="CE" && s!="C")
-            query.append(s);
+
+        if (s.equals("=")) 
+            query = String.valueOf(getResult(query)); // Risolve l'espressione
+        else if (s.equals("CE")) 
+            query = ""; // Cancella tutto
+        else if (s.equals("C")) 
+        {
+            if (!query.isEmpty()) 
+                query = query.substring(0, query.length() - 1); // Cancella l'ultimo carattere
+        }
+        else 
+            query += s; // Aggiunge il carattere alla query
+    }    
+    
+    public static int getResult(String expression) {
+        int result;
+        
+        // Se l'espressione è un numero, lo restituisce
+        try 
+        {
+            return Integer.parseInt(expression);
+        } 
+        catch (NumberFormatException e) {}
+
+        // Risolve le parentesi
+        while (expression.contains("(")) 
+        {
+            int start = expression.lastIndexOf('(');
+            int end = expression.indexOf(')', start);
+
+            String s = expression.substring(start + 1, end);
+            result = getResult(s);
+
+            expression = expression.substring(0, start) + result + expression.substring(end + 1);
+        }
+
+        // Gestisce moltiplicazione e divisione
+        while (expression.contains("*") || expression.contains("/")) 
+        {
+            int mulIndex = expression.indexOf('*');
+            int divIndex = expression.indexOf('/');
+            int index = (mulIndex != -1 && (divIndex == -1 || mulIndex < divIndex)) ? mulIndex : divIndex;
+
+            String left = "", right = "";
+            
+            int leftIndex = index - 1;
+            while (leftIndex >= 0 && Character.isDigit(expression.charAt(leftIndex))) 
+            {
+                leftIndex--;
+            }
+            left = expression.substring(leftIndex + 1, index);
+
+            int rightIndex = index + 1;
+            while (rightIndex < expression.length() && Character.isDigit(expression.charAt(rightIndex))) 
+            {
+                rightIndex++;
+            }
+            right = expression.substring(index + 1, rightIndex);
+
+            int num1 = Integer.parseInt(left);
+            int num2 = Integer.parseInt(right);
+            result = (expression.charAt(index) == '*') ? num1 * num2 : num1 / num2;
+
+            expression = expression.substring(0, leftIndex + 1) + result + expression.substring(rightIndex);
+        }
+
+        // Gestisce somma e sottrazione
+        while (expression.contains("+") || expression.contains("-")) 
+        {
+            int sumIndex = expression.indexOf('+');
+            int subIndex = expression.indexOf('-');
+            int index = (sumIndex != -1 && (subIndex == -1 || sumIndex < subIndex)) ? sumIndex : subIndex;
+
+            String left = "", right = "";
+            
+            int leftIndex = index - 1;
+            while (leftIndex >= 0 && Character.isDigit(expression.charAt(leftIndex))) 
+            {
+                leftIndex--;
+            }
+            left = expression.substring(leftIndex + 1, index);
+
+            int rightIndex = index + 1;
+            while (rightIndex < expression.length() && Character.isDigit(expression.charAt(rightIndex))) 
+            {
+                rightIndex++;
+            }
+            right = expression.substring(index + 1, rightIndex);
+
+            int num1 = Integer.parseInt(left);
+            int num2 = Integer.parseInt(right);
+            result = (expression.charAt(index) == '+') ? num1 + num2 : num1 - num2;
+
+            expression = expression.substring(0, leftIndex + 1) + result + expression.substring(rightIndex);
+        }
+
+        try 
+        {
+            return Integer.parseInt(expression);
+        } 
+        catch (NumberFormatException e) 
+        {
+            return 0;
+        }
     }
 }
