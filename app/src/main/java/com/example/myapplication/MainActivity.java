@@ -51,33 +51,16 @@ public class MainActivity extends AppCompatActivity
         buttons.put("*", (Button)findViewById(R.id.bmul));
         buttons.put("/", (Button)findViewById(R.id.bdiv));
         buttons.put("=", (Button)findViewById(R.id.bequals));
-        buttons.put(".", (Button)findViewById(R.id.bdot));
+        buttons.put(".", (Button)findViewById(R.id.b00));
         buttons.put("ce",(Button)findViewById(R.id.bce));
         buttons.put("del", (Button)findViewById(R.id.bdel));
-        buttons.put("^", (Button)findViewById(R.id.bpot));
-        buttons.put("sqrt", (Button)findViewById(R.id.bsqrt));
+        buttons.put("^", (Button)findViewById(R.id.bcp));
+        buttons.put("sqrt", (Button)findViewById(R.id.bop));
         query = (TextView)findViewById(R.id.query);
     }
-
-    protected void click(View v)
-    {
-        Button b = (Button) v;
-        String s = b.getText().toString();
-
-        if (s.equals("=")) 
-            query = String.valueOf(getResult(query)); // Risolve l'espressione
-        else if (s.equals("CE")) 
-            query = ""; // Cancella tutto
-        else if (s.equals("C")) 
-        {
-            if (!query.isEmpty()) 
-                query = query.substring(0, query.length() - 1); // Cancella l'ultimo carattere
-        }
-        else 
-            query += s; // Aggiunge il carattere alla query
-    }    
     
-    public static int getResult(String expression) {
+    public static int getResult(String expression)
+    {
         int result;
         
         // Se l'espressione è un numero, lo restituisce
@@ -100,9 +83,9 @@ public class MainActivity extends AppCompatActivity
         }
 
         // Gestisce moltiplicazione e divisione
-        while (expression.contains("*") || expression.contains("/")) 
+        while (expression.contains("x") || expression.contains("/"))
         {
-            int mulIndex = expression.indexOf('*');
+            int mulIndex = expression.indexOf('x');
             int divIndex = expression.indexOf('/');
             int index = (mulIndex != -1 && (divIndex == -1 || mulIndex < divIndex)) ? mulIndex : divIndex;
 
@@ -124,7 +107,7 @@ public class MainActivity extends AppCompatActivity
 
             int num1 = Integer.parseInt(left);
             int num2 = Integer.parseInt(right);
-            result = (expression.charAt(index) == '*') ? num1 * num2 : num1 / num2;
+            result = (expression.charAt(index) == 'x') ? num1 * num2 : num1 / num2;
 
             expression = expression.substring(0, leftIndex + 1) + result + expression.substring(rightIndex);
         }
@@ -166,6 +149,40 @@ public class MainActivity extends AppCompatActivity
         catch (NumberFormatException e) 
         {
             return 0;
+        }
+    }
+
+    public void click(View view)
+    {
+        Button b = (Button) view;
+        String s = b.getText().toString();
+        String expression = query.getText().toString();
+
+        switch (s)
+        {
+            case "=":
+                try
+                {
+                    expression = String.valueOf(getResult(query.getText().toString())); // Risolve l'espressione
+                    query.setText(expression);
+                }
+                catch (Exception e)
+                {
+                    query.setText("espressione non valida");
+                }
+                break;
+            case "CE":
+                query.setText(""); // Cancella tutto
+                break;
+            case "C":
+                if (!query.getText().toString().isEmpty())
+                    query.setText(expression.substring(0, expression.length() - 1)); // Cancella l'ultimo carattere
+                break;
+            default:
+                expression += s;
+                expression = expression.replaceAll("espressione non valida", "");
+                query.setText(expression); // Aggiunge il carattere alla query
+                break;
         }
     }
 }

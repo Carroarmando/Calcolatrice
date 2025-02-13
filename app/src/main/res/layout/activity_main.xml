@@ -20,14 +20,14 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/bdot"
+        android:id="@+id/b00"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="10dp"
         android:layout_marginBottom="20dp"
         android:onClick="click"
-        android:text="."
-        android:textSize="24sp"
+        android:text="00"
+        android:textSize="19sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/b0" />
 
@@ -35,17 +35,17 @@
         android:id="@+id/bequals"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="10dp"
         android:layout_marginBottom="20dp"
         android:onClick="click"
         android:text="="
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/bdot" />
+        app:layout_constraintStart_toEndOf="@+id/b00" />
 
     <Button
         android:id="@+id/bdiv"
-        android:layout_width="100dp"
+        android:layout_width="80dp"
         android:layout_height="70dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
@@ -57,7 +57,7 @@
 
     <Button
         android:id="@+id/bmul"
-        android:layout_width="100dp"
+        android:layout_width="80dp"
         android:layout_height="70dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
@@ -69,7 +69,7 @@
 
     <Button
         android:id="@+id/bmin"
-        android:layout_width="100dp"
+        android:layout_width="80dp"
         android:layout_height="70dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
@@ -81,7 +81,7 @@
 
     <Button
         android:id="@+id/bplu"
-        android:layout_width="100dp"
+        android:layout_width="80dp"
         android:layout_height="70dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
@@ -93,7 +93,7 @@
 
     <Button
         android:id="@+id/bce"
-        android:layout_width="100dp"
+        android:layout_width="80dp"
         android:layout_height="70dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
@@ -119,19 +119,19 @@
         android:id="@+id/b2"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="10dp"
         android:layout_marginBottom="20dp"
         android:onClick="click"
         android:text="2"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/bdot"
+        app:layout_constraintBottom_toTopOf="@+id/b00"
         app:layout_constraintStart_toEndOf="@+id/b1" />
 
     <Button
         android:id="@+id/b3"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="10dp"
         android:layout_marginBottom="20dp"
         android:onClick="click"
         android:text="3"
@@ -155,7 +155,7 @@
         android:id="@+id/b5"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="10dp"
         android:layout_marginBottom="20dp"
         android:onClick="click"
         android:text="5"
@@ -167,7 +167,7 @@
         android:id="@+id/b6"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="10dp"
         android:layout_marginBottom="20dp"
         android:onClick="click"
         android:text="6"
@@ -188,46 +188,46 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/bsqrt"
+        android:id="@+id/bop"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_marginStart="20dp"
         android:layout_marginBottom="20dp"
         android:onClick="click"
-        android:text="√"
+        android:text="("
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/b7"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/bpot"
+        android:id="@+id/bcp"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="10dp"
         android:layout_marginBottom="20dp"
         android:onClick="click"
-        android:text="^"
+        android:text=")"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/b8"
-        app:layout_constraintStart_toEndOf="@+id/bsqrt" />
+        app:layout_constraintStart_toEndOf="@+id/bop" />
 
     <Button
         android:id="@+id/bdel"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="10dp"
         android:layout_marginBottom="20dp"
         android:onClick="click"
         android:text="C"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/b9"
-        app:layout_constraintStart_toEndOf="@+id/bpot" />
+        app:layout_constraintStart_toEndOf="@+id/bcp" />
 
     <Button
         android:id="@+id/b8"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="10dp"
         android:layout_marginBottom="20dp"
         android:onClick="click"
         android:text="8"
@@ -239,7 +239,7 @@
         android:id="@+id/b9"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="10dp"
         android:layout_marginBottom="20dp"
         android:onClick="click"
         android:text="9"
@@ -249,12 +249,12 @@
 
     <TextView
         android:id="@+id/query"
-        android:layout_width="371dp"
+        android:layout_width="351dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
-        android:text="3+2"
+        android:text=""
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
