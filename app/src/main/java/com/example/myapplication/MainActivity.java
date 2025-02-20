@@ -61,6 +61,11 @@ public class MainActivity extends AppCompatActivity
     
     public static int getResult(String expression)
     {
+        if(expression.contains("e") && !expression.contains("s"))
+            expression = expression.replace("e", "3");
+        expression = expression.replaceAll("\\(\\)", "0");
+
+
         int result;
         
         // Se l'espressione è un numero, lo restituisce
@@ -148,7 +153,7 @@ public class MainActivity extends AppCompatActivity
         } 
         catch (NumberFormatException e) 
         {
-            return 0;
+            return Integer.MAX_VALUE;
         }
     }
 
@@ -163,8 +168,11 @@ public class MainActivity extends AppCompatActivity
             case "=":
                 try
                 {
-                    expression = String.valueOf(getResult(query.getText().toString())); // Risolve l'espressione
-                    query.setText(expression);
+                    expression = String.valueOf(getResult(expression)); // Risolve l'espressione
+                    if(Integer.parseInt(expression) != Integer.MAX_VALUE)
+                        query.setText(expression);
+                    else
+                        query.setText("espressione non valida");
                 }
                 catch (Exception e)
                 {
